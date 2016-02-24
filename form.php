@@ -1,4 +1,4 @@
 <?php
 require 'function.php';
-setContact();
+setImage();
 header('Location: index.php');
