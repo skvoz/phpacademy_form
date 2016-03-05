@@ -1,6 +1,0 @@
-<table>
-    <?php
-        if ($)
-    ?>
-</table>
-

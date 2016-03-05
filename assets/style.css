@@ -1,0 +1,42 @@
+html {
+    /*height: 100%;*/
+}
+body {
+    background: #000;
+    min-height: 100%;
+    /*height: 100%*/
+}
+
+.wrapper {
+    font-size: 18px;
+    background: #fff;
+    width: 940px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100%;
+    height: 100%
+}
+
+header {
+    position: relative;
+}
+
+.currency {
+    position: absolute;
+    top: -40px;
+    left: 0;
+}
+
+.check-currency {
+    position: absolute;
+    top: -43px;
+    left: 80px;
+}
+
+table tr td {
+    text-align: center;
+}
+
+table tr th{
+    text-align: center;
+}

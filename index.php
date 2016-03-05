@@ -4,14 +4,11 @@
 //include function
 require 'functions.php';
 
-
-
-
-
+$curr = getCurrency();
 //render html
-echo render('template.php', [
+echo render('layout', [
     'curCurrency' => curCurrency(),
-    'currencyWidget' => currencyWidget(),
-    'priceWidget' => priceWidget()
+    'currencyWidget' => currencyWidget($curr),
+    'priceWidget' => priceWidget($curr)
 
 ]);
