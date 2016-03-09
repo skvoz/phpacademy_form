@@ -19,9 +19,14 @@ class PaginatorWidget extends AbstractWidget
      */
     function display()
     {
+        $perPage = 10;
+        $curPage = @$_REQUEST['page'] ? @$_REQUEST['page'] : 1;
+        $count = count($this->data)/$perPage;
+        $countPage = round($count);
         return View::render('paginator', [
-            'data' => $data,
             'perPage' => $perPage,
-        ])
+            'countPage' => $countPage ,
+            'curPage' => $curPage,
+        ]);
     }
 }
