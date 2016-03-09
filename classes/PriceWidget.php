@@ -15,8 +15,10 @@ class PriceWidget extends AbstractWidget
         }
         fclose($handle);
 
+        $paginator = new Paginator($data);
+
         return View::render('displayPrice',[
-            'data' => $data,
+            'data' => $paginator->getOffsetData(),
             'curr' => $this->currency,
         ]);
     }
