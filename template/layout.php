@@ -15,8 +15,12 @@
     <body>
         <div class="wrapper container">
             <header class="page-header">
+
                 <span class="currency label label-success label-lg"><?=$curCurrency?></span>
+
+
                 <span class="check-currency"><?=$currencyWidget?></span>
+
 
                 <h1>price         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>example price with some currency</small></h1>
             </header>
