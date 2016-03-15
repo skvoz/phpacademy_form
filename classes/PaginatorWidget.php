@@ -6,11 +6,11 @@ class PaginatorWidget extends AbstractWidget
     /** data cur page
      * @var
      */
-    public $data;
+    public $conn;
 
-    public function __construct($data)
+    public function __construct($conn)
     {
-        $this->data = $data;
+        $this->conn = $conn;
     }
 
     /**
@@ -21,8 +21,19 @@ class PaginatorWidget extends AbstractWidget
     {
         $perPage = 10;
         $curPage = @$_REQUEST['page'] ? @$_REQUEST['page'] : 1;
-        $count = count($this->data)/$perPage;
+
+        $sql = <<<SQL
+SELECT count(*) FROM product
+SQL;
+        /** @var PDOStatement $statement */
+        $statement = $this->conn->query($sql);
+
+        $result = $statement->fetch();
+
+        $count = $result[0]/$perPage;
+
         $countPage = round($count);
+
         return View::render('paginator', [
             'perPage' => $perPage,
             'countPage' => $countPage ,

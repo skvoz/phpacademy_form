@@ -3,24 +3,31 @@
 
 class PriceWidget extends AbstractWidget
 {
+    public $conn;
+    public $curr;
+    /**
+     * PriceWidget constructor.
+     * @param $curr - currency
+     * @param $conn - connection to DB
+     */
+    public function __construct($curr, $conn)
+    {
+        $this->curr = $curr;
+        $this->conn = $conn;
+    }
     /**
      * @return string
      * @throws Exception
      */
     function display()
     {
-        $handle = fopen("./assets/price.csv", "r");
-        while (!feof($handle)) {
-            $data[] = fgets($handle, 4096);
-        }
-        fclose($handle);
-
-        $paginator = new Paginator($data);
+        $paginator = new Paginator($this->conn);
 
         return View::render('displayPrice',[
+            'curr' => $this->curr,
             'data' => $paginator->getOffsetData(),
-            'paginator' => (new PaginatorWidget($data))->display(),
-            'curr' => $this->currency,
+            'paginator' => (new PaginatorWidget($this->conn))->display(),
+
         ]);
     }
 }

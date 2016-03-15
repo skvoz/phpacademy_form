@@ -1,4 +1,3 @@
-
 <table class="table">
         <tr>
             <th>firm</th>
@@ -8,11 +7,10 @@
         <?php
         if (is_array($data)) {
             foreach ($data as $item) {
-                $arr = explode(';', $item);
-                $firm = iconv('CP1251', 'UTF-8', @$arr[3]);
-                $name = iconv('CP1251', 'UTF-8', @$arr[4]);
-                $price = $curr == 'grn' ? @$arr[5] : @$arr[14];
-                $price = iconv('CP1251', 'UTF-8', $price);
+                $firm = $item['firm'];
+                $name = $item['name'];
+                $price = $item['price_' . $curr];
+
                 echo sprintf('
                     <tr>
                         <td>%s</td>

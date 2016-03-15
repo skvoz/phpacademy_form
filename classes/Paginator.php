@@ -6,9 +6,9 @@
 class Paginator
 {
     /**
-     * @var array
+     * @var PDOStatement
      */
-    public $data;
+    public $conn;
 
     /**
      * @var int
@@ -17,11 +17,11 @@ class Paginator
 
     /**
      * Paginator constructor.
-     * @param array $data
+     * @param $conn
      */
-    public function __construct($data)
+    public function __construct($conn)
     {
-        $this->data = $data;
+        $this->conn = $conn;
         
         $result =  $this->getOffsetData();
 
@@ -34,16 +34,15 @@ class Paginator
 
         $result = [];
 
-        $start  = @$this->data[($page-1)*10];
+        $perPage = $this->perPage;
+        $offset = ($page-1)*10;
+        $sql = <<<SQL
+SELECT * FROM product LIMIT $perPage OFFSET $offset
+SQL;
+        /** @var PDOStatement $statement */
+        $statement = $this->conn->query($sql);
 
-        if ($start === false) {
-            throw new Exception('Error page');
-        }
-
-        for($i=0; $i < $this->perPage; $i++) {
-
-            $result[] = $this->data[($page-1)*10+$i];
-        }
+        $result = $statement->fetchAll();
 
         return $result;
     }
