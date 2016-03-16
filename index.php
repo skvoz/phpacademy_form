@@ -3,6 +3,11 @@
 //bootstrap file
 require_once 'bootstrap.php';
 
+if (isset($_GET['save_order']) && $_GET['save_order'] == true) {
+    //handler save
+    header('location: index.php');
+}
+
 //change memory limit
 //ini_set('memory_limit', '-1');
 
