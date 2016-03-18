@@ -15,6 +15,7 @@ class View
     public static function render($template, array $environment = [])
     {
         extract($environment);
+
         ob_start();
         $path = 'template/'.$template.'.php';
         if (is_file($path) === false) {
