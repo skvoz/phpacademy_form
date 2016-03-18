@@ -1,13 +1,12 @@
 <?php
     spl_autoload_register(function ($class_name) {
-        $path = 'classes/'.$class_name . '.php';
-        if (is_file($path)) {
-            include $path;
-        } else {
 
-            $path = 'controllers/'.$class_name . '.php';
+        $urls = ['classes', 'models', 'controllers'];
 
-            include $path;
+        foreach ($urls as $url) {
+            $path = $url . '/'.$class_name . '.php';
+            if (is_file($path)) {
+                include $path;
+            }
         }
-
     });

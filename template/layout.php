@@ -15,15 +15,15 @@
     <body>
         <div class="wrapper container">
             <header class="page-header">
-                <style>
-                    .username    {
-                        position: absolute;
-                        right: 10px;
-                        top: -50px;
-                    }
-                </style>
+<!--                <style>-->
+<!--                    .username    {-->
+<!--                        position: absolute;-->
+<!--                        right: 10px;-->
+<!--                        top: -50px;-->
+<!--                    }-->
+<!--                </style>-->
 
-                <?=$usernameWidget?>
+<!--                --><?//=$usernameWidget?>
 
                 <span class="currency label label-success label-lg"><?=$curCurrency?></span>
 

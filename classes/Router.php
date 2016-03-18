@@ -20,7 +20,9 @@ class Router
 //        $rules = require_once ('../config/routing.php');
 //        foreach($rules as $rule) {
 //        }
-
+//        var_dump($url);
+//        die;
+        $args = [];
         $arr = explode('/', $url);
         $controller = $arr[0];
         $action = 'action' . ucfirst($arr[1]);

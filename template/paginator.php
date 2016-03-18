@@ -8,7 +8,8 @@
 <?php
 
 //var_dump($countPage);
-//die;
+//die;e;
+
 for ($i =1; $i < $countPage; $i++) {
     if ($i > 10 ) {
         echo '...';

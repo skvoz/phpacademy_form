@@ -3,17 +3,15 @@
 
 class PriceWidget extends AbstractWidget
 {
-    public $conn;
     public $curr;
     /**
      * PriceWidget constructor.
      * @param $curr - currency
      * @param $conn - connection to DB
      */
-    public function __construct($curr, $conn)
+    public function __construct($curr)
     {
         $this->curr = $curr;
-        $this->conn = $conn;
     }
     /**
      * @return string
@@ -21,12 +19,13 @@ class PriceWidget extends AbstractWidget
      */
     function display()
     {
-        $paginator = new Paginator($this->conn);
+        $model = new ProductModel();
+        $paginator = new Paginator($model);
 
         return View::render('displayPrice',[
             'curr' => $this->curr,
             'data' => $paginator->getOffsetData(),
-            'paginator' => (new PaginatorWidget($this->conn))->display(),
+            'paginator' => (new PaginatorWidget($model))->display(),
 
         ]);
     }

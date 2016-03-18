@@ -6,22 +6,18 @@
 class Paginator
 {
     /**
-     * @var PDOStatement
+     * @var ProductModel
      */
-    public $conn;
+    public $model;
 
-    /**
-     * @var int
-     */
-    public $perPage = 10;
 
     /**
      * Paginator constructor.
-     * @param $conn
+     * @param $model
      */
-    public function __construct($conn)
+    public function __construct($model)
     {
-        $this->conn = $conn;
+        $this->model = $model;
         
         $result =  $this->getOffsetData();
 
@@ -32,18 +28,10 @@ class Paginator
     {
         $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
 
-        $result = [];
-
-        $perPage = $this->perPage;
         $offset = ($page-1)*10;
-        $sql = <<<SQL
-SELECT * FROM product LIMIT $perPage OFFSET $offset
-SQL;
-        /** @var PDOStatement $statement */
-        $statement = $this->conn->query($sql);
 
-        $result = $statement->fetchAll();
+        $this->model->offset = $offset;
 
-        return $result;
+        return $this->model->findAll();
     }
 }

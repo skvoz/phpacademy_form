@@ -3,14 +3,14 @@
 
 class PaginatorWidget extends AbstractWidget
 {
-    /** data cur page
-     * @var
+    /**
+     * @var ProductModel
      */
-    public $conn;
+    public $model;
 
-    public function __construct($conn)
+    public function __construct($model)
     {
-        $this->conn = $conn;
+        $this->model = $model;
     }
 
     /**
@@ -19,18 +19,14 @@ class PaginatorWidget extends AbstractWidget
      */
     function display()
     {
-        $perPage = 10;
+
         $curPage = @$_REQUEST['page'] ? @$_REQUEST['page'] : 1;
 
-        $sql = <<<SQL
-SELECT count(*) FROM product
-SQL;
-        /** @var PDOStatement $statement */
-        $statement = $this->conn->query($sql);
+        $result = (int)$this->model->count();
 
-        $result = $statement->fetch();
+        $perPage = $this->model->perPage;
 
-        $count = $result[0]/$perPage;
+        $count = $result/$perPage;
 
         $countPage = round($count);
 

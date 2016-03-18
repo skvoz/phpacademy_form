@@ -13,19 +13,11 @@ class ProductController extends BaseController
     {
         $curr = (new Currency())->getCurrency();
 
-        try {
-            $conn = Application::getDb()->getConnectoion();
-
-        } catch (Exception $e) {
-            echo 'Caught exception: ', $e->getMessage(), "\n";
-            die;
-        }
-
         echo View::render('layout', [
-            'usernameWidget' => new UsernameWidget($conn),
+//            'usernameWidget' => new UsernameWidget($conn),
             'curCurrency' => $curr,
-            'currencyWidget' => new CurrencyWidget($curr, $conn),
-            'priceWidget' => new PriceWidget($curr, $conn)
+            'currencyWidget' => new CurrencyWidget($curr),
+            'priceWidget' => new PriceWidget($curr)
 
         ]);
     }
