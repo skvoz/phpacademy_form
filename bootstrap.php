@@ -1,15 +1,13 @@
 <?php
+    spl_autoload_register(function ($class_name) {
+        $path = 'classes/'.$class_name . '.php';
+        if (is_file($path)) {
+            include $path;
+        } else {
+            var_dump($class_name);
+            $path = 'controllers/'.$class_name . '.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "scotchbox";
-$port=8080;
+            include $path;
+        }
 
-try {
-    $conn = new PDO("mysql:host=$servername;port=$port;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    $e->getMessage();
-    die;
-}
+    });
