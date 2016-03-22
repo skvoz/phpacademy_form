@@ -43,17 +43,37 @@
 
     <div class="row">
         <div class="col-md-12">
-            <?php
-            if ($listProduct) {
-                foreach ($listProduct as $item) {
+            sum = <?php echo $sum[$curr] ?>
+            <table class="table">
+                <tr>
+                    <th>firm</th>
+                    <th>name</th>
+                    <th>price</th>
 
+                </tr>
+                <?php
+                if ($listProduct) {
+                    foreach ($listProduct as $item) {
+                        $firm = $item['firm'];
+                        $name = $item['name'];
+                        $price = $item['price_' . $curr];
+
+                        echo sprintf('
+                    <tr>
+                        <td>%s</td>
+                        <td>%s</td>
+                        <td>%s</td>
+
+                    </tr>
+                ', $firm, $name, $price);
+                    }
+                } else {
+                    echo 'cart empty';
                 }
-            } else {
-                echo 'cart empty';
-            }
 
 
-            ?>
+                ?>
+            </table>
         </div>
     </div>
 </div>

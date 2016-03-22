@@ -32,6 +32,6 @@ class ProductController extends BaseController
             'id_product' => $id,
             'id_user' => DEFAULT_USER_ID,
         ]);
-        $this->redirect('product/index');
+        $this->redirect('/product/index');
     }
 }

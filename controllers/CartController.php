@@ -6,9 +6,13 @@ class CartController extends BaseController
     public function actionIndex()
     {
         $curr = (new Currency())->getCurrency();
+        $listProduct = (new CartModel())->getList();
+        $sum = (new CartModel())->getSum();
 
         echo View::render('cart', [
-            'listProduct' => null,
+            'curr' => $curr,
+            'sum' => $sum,
+            'listProduct' => $listProduct,
             'usernameWidget' => new UsernameWidget(),
             'curCurrency' => $curr,
             'currencyWidget' => new CurrencyWidget($curr),

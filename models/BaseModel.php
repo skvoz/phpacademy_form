@@ -21,13 +21,21 @@ abstract class BaseModel
         $this->conn = $conn;
     }
 
+    /** save data
+     * @param $data
+     * @return int
+     */
     public function save($data)
     {
-        var_dump(array_keys($data));
-        die;
-        foreach ($data as $order => $item) {
-            $sql = sprintf("INSERT INTO %s()", $this->tableName);
-        }
+        $fields = array_keys($data);
+        $strField = implode(',', $fields);
+
+        $strValues = implode(',', array_values($data));
+
+        $sql = sprintf("INSERT INTO `%s` (%s)  VALUES (%s)", $this->tableName, $strField, $strValues);
+        $result = $this->conn->exec($sql);
+
+        return $result;
     }
 
     /**
@@ -44,6 +52,9 @@ abstract class BaseModel
         return isset($result) && isset($result[0]) ? $result[0] : 0;
     }
 
+    /**
+     * @return array
+     */
     public function findAll()
     {
         $sql = sprintf("SELECT * FROM %s LIMIT %s OFFSET %s", $this->tableName, $this->perPage, $this->offset);
@@ -55,6 +66,10 @@ abstract class BaseModel
         return $result;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function findById($id)
     {
         $sql = sprintf("SELECT * FROM %s WHERE id=%s", $this->tableName, $id);
