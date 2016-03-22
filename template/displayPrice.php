@@ -13,7 +13,7 @@
                 $name = $item['name'];
                 $price = $item['price_' . $curr];
 
-                $link = sprintf('<a href="/index.php?save_order=true&product_id=%s">button</a>', $id);
+                $link = sprintf('<a href="/product/save/%s">to cart</a>', $id);
 
                 echo sprintf('
                     <tr>

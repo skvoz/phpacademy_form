@@ -28,9 +28,11 @@ class Application
      */
     public static function getConfig($name = 'db')
     {
-        $array = require_once ('./config/main.php');
+
+        $array = require ('./config/main.php');
 
         if (isset($array[$name])) {
+
             return $array[$name];
         }
 

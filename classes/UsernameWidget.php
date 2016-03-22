@@ -5,18 +5,15 @@
  */
 class UsernameWidget extends AbstractWidget
 {
-    /**
-     * @var
-     */
-    public $conn;
+
 
     /**
      * UsernameWidget constructor.
      * @param $conn
      */
-    public function __construct($conn)
+    public function __construct()
     {
-        $this->conn = $conn;
+
     }
 
 
@@ -48,8 +45,9 @@ class UsernameWidget extends AbstractWidget
 //        $statement = $this->conn->query($sql);
 //
 //        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        $name = '111';
-        $email = '222';
+        $user = (new UsersModel)->findById(DEFAULT_USER_ID);
+        $name = $user['username'];
+        $email = $user['email'];
 
         return View::render('usernameWidget',[
             'name' => $name,

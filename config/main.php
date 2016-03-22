@@ -6,4 +6,5 @@ return [
         'username' => 'root',
         'password' => 'root',
     ],
+    'defaultController' => 'product',
 ];

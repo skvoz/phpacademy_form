@@ -23,16 +23,41 @@ class Router
 //        var_dump($url);
 //        die;
         $args = [];
-        $arr = explode('/', $url);
+        $isStandardArgs = strstr($url, '?');
+        $standardArgs = [];
+
+        //get args
+        if ($isStandardArgs) {
+            $arr = explode('?', $url);
+            $url = $arr[0];
+            $standardArgsUrl = $arr[1];
+            $standardArgsArr = explode('&', $standardArgsUrl);
+            foreach($standardArgsArr as $order => $item) {
+                $standardArgs[$order] = $item;
+            }
+
+            unset($arr);
+        }
+        //get url
+        if (empty($url)) {
+            $arr = [
+                Application::getConfig('defaultController'),
+                'index',
+            ];
+        } else {
+            $arr = explode('/', $url);
+        }
+
         $controller = $arr[0];
         $action = 'action' . ucfirst($arr[1]);
 
-        if (count($arr) > 2) {
+        if (count($arr) > 2 || $isStandardArgs) {
             foreach ($arr as $order => $item) {
                 if ($order > 1) {
                     $args[] = $item;
                 }
             }
+            array_merge($args, $standardArgs);
         }
 
         $nameController = ucfirst($controller) . 'Controller';

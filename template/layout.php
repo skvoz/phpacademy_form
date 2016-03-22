@@ -10,20 +10,24 @@
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="assets/style.css">
+        <link rel="stylesheet" type="text/css" href="/assets/style.css">
     </head>
     <body>
         <div class="wrapper container">
             <header class="page-header">
-<!--                <style>-->
-<!--                    .username    {-->
-<!--                        position: absolute;-->
-<!--                        right: 10px;-->
-<!--                        top: -50px;-->
-<!--                    }-->
-<!--                </style>-->
+                <style>
+                    .username    {
+                        position: absolute;
+                        right: 10px;
+                        top: -50px;
+                    }
+                    .left {
+                        float: right;
+                    }
+                </style>
 
-<!--                --><?//=$usernameWidget?>
+                <?=$usernameWidget?>
+                <a href="cart/index" class="left">cart</a>
 
                 <span class="currency label label-success label-lg"><?=$curCurrency?></span>
 
