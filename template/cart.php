@@ -28,7 +28,7 @@
         </style>
 
         <?= $usernameWidget ?>
-        <a href="cart/index" class="left">cart</a>
+        <a href="/cart/index" class="left">cart</a>
 
         <span class="currency label label-success label-lg"><?= $curCurrency ?></span>
 
