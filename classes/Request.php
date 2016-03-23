@@ -17,4 +17,17 @@ class Request {
     {
         return $this->url;
     }
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public function getPost($key)
+    {
+        if (isset($_POST[$key])) {
+            return $_POST[$key];
+        } else {
+            return false;
+        }
+    }
 }

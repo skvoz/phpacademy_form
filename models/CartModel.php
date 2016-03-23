@@ -3,8 +3,6 @@
 
 class CartModel extends BaseModel
 {
-
-
     public function getList()
     {
         $sql = sprintf("

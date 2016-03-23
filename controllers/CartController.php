@@ -9,7 +9,7 @@ class CartController extends BaseController
         $listProduct = (new CartModel())->getList();
         $sum = (new CartModel())->getSum();
 
-        echo View::render('cart', [
+        echo $this->render('cart', [
             'curr' => $curr,
             'sum' => $sum,
             'listProduct' => $listProduct,

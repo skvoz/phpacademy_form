@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 define('DEFAULT_USER_ID', 1);
 
 require_once 'bootstrap.php';

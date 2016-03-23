@@ -28,26 +28,15 @@ class UsernameWidget extends AbstractWidget
      */
     public function display()
     {
-//        $sql = <<<SQL
-//          SELECT
-//          u.username,
-//          u.email,
-//          p.name,
-//          p.price_grn
-//          FROM
-//            users u
-//          JOIN order o ON o.id_user=users.id
-//          JOIN product p ON p.id=o.id_product
-//          WHERE username='vasa'
-//SQL;
-//
-//        /** @var PDOStatement $statement */
-//        $statement = $this->conn->query($sql);
-//
-//        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        $user = (new UsersModel)->findById(DEFAULT_USER_ID);
-        $name = $user['username'];
-        $email = $user['email'];
+        if (isset($_SESSION['user_id'])) {
+            $userId = $_SESSION['user_id'];
+            $user = (new UsersModel)->findById($userId);
+            $name = $user['username'];
+            $email = $user['email'];
+        } else {
+            $name = false;
+            $email = false;
+        }
 
         return View::render('usernameWidget',[
             'name' => $name,

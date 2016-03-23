@@ -49,7 +49,12 @@ class Router
         }
 
         $controller = $arr[0];
-        $action = 'action' . ucfirst($arr[1]);
+        if (isset($arr[1])) {
+            $action = 'action' . ucfirst($arr[1]);
+        } else {
+            $action = 'actionIndex';
+        }
+
 
         if (count($arr) > 2 || $isStandardArgs) {
             foreach ($arr as $order => $item) {
@@ -78,6 +83,7 @@ class Router
             throw new Exception('Error , action not exist');
         }
 
+        //productControllerObject->actionIndex()
         call_user_func_array(array($controller, $action), $args);
     }
 }
